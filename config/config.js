@@ -6,6 +6,7 @@ exports.config = {
     routes: 'routes/**/*.js',
     models: 'models/**/*.js',
     db: 'mongodb://localhost/express-api',
+    title : 'express api boilerplate',
     globFiles: function(location) {
         var files = glob.sync(location);
         var output = [];

@@ -1,5 +1,14 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+	h2= title
+	h3 Available routes
+	ul
+		each route in routes
+			li 
+				p #{route.path}
+				p 
+					ul 
+						each allowed, key in route.methods
+							li 
+								p #{key} - #{allowed}

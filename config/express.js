@@ -5,6 +5,7 @@ var bodyParser = require('body-parser'),
     config = require('./config').config,
     cookieParser = require('cookie-parser'),
     express = require('express'),
+    getRoutes = require("express-routes-viewer"),
     logger = require('morgan'),
     mongoose = require('mongoose'),
     _ = require('lodash'),
@@ -36,6 +37,7 @@ module.exports = function() {
 
     // catch 404 and forward to error handler
     app.use(function(err, req, res, next) {
+        console.log(err);
         var err = new Error('Not Found');
         next(err);
     });
@@ -62,6 +64,10 @@ module.exports = function() {
 
     // Connect to mongodb
     mongoose.connect(config.db);
+
+    getRoutes(app, function(routes){
+        app.locals.routes = routes;
+    });
 
     return app;
 };
